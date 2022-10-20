@@ -18,11 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: |
-        cd $IMAGE_BUILD_OS_PATH && docker build . --file Dockerfile --tag $IMAGE_NAME
     - name: Log into registry
       run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login -u $DOCKER_HUB_USER --password-stdin
+    - name: Docker buildx ready
+      run: |
+        DOCKER_CLI_EXPERIMENTAL=enabled
+        docker run --privileged --rm tonistiigi/binfmt --install all
+        docker buildx create --use --name mybuilder
+        docker buildx inspect mybuilder --bootstrap
     - name: Push image
       run: |
         # now pwd
@@ -44,8 +47,5 @@ jobs:
 
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
-        # seting tag
-        docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-
-        # docker push
-        docker push $IMAGE_ID:$VERSION
+        # build and push
+        docker buildx build -t $IMAGE_ID:$VERSION --platform=linux/arm,linux/arm64,linux/amd64 . --push
