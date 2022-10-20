@@ -31,5 +31,5 @@ RUN apk --no-cache add \
   && rm -rf /var/cache/apk/* /tmp/*
 
 COPY --from=builder /go/src/github.com/davecheney/httpstat/httpstat .
-ENTRYPOINT ["./httpstat"]
-# CMD ["./httpstat", "--help"]
+ENTRYPOINT ["/httpstat"]
+# CMD ["/httpstat", "--help"]

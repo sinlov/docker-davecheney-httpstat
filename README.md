@@ -10,11 +10,21 @@
 
 [https://github.com/sinlov/docker-davecheney-httpstat](https://github.com/sinlov/docker-davecheney-httpstat)
 
+## useage
+
+```bash
+$ sudo curl -L --fail https://raw.githubusercontent.com/sinlov/docker-davecheney-httpstat/main/run.sh -o /usr/local/bin/httpstat
+$ sudo chmod +x /usr/local/bin/httpstat
+# then check
+$ httpstat --help
+```
+
 ## todo-list
 
 - rename `sinlov/docker-davecheney-httpstat` to new github url
 - rename `sinlov` to new org or user
-- raname `docker-davecheney-httpstat` to new docker image name
+- rename `docker-davecheney-httpstat` to new docker image name
+- rename `httpstat` to new exec tools name
 - add [secrets](https://github.com/sinlov/docker-davecheney-httpstat/settings/secrets/actions) `New repository secret` name `ACCESS_TOKEN` from [hub.docker](https://hub.docker.com/settings/security)
 - go cli repo [https://github.com/davecheney/httpstat](https://github.com/davecheney/httpstat)
 
