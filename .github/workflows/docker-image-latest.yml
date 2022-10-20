@@ -23,6 +23,7 @@ jobs:
     - name: Docker buildx ready
       run: |
         DOCKER_CLI_EXPERIMENTAL=enabled
+        docker run --privileged --rm tonistiigi/binfmt --install all
         docker buildx create --use --name mybuilder
         docker buildx inspect mybuilder --bootstrap
     - name: Push image
