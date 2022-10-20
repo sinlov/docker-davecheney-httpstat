@@ -1,14 +1,23 @@
-name: Docker Image CI alpine by tag
+## need `New repository secret`
+
+- `ACCESS_TOKEN` from [hub.docker](https://hub.docker.com/settings/security)
+
+## base template
+
+- just only support OS/ARCH `linux/amd64`
+
+```yml
+name: Docker Image CI latest
 
 on:
   push:
-    tags:
-      - '*' # Push events to matching *, i.e. 1.0.0 v1.0, v20.15.10
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 env:
   # nmae of docker image
   DOCKER_HUB_USER: sinlov
-  IMAGE_BUILD_OS_PATH: alpine
   IMAGE_NAME: docker-davecheney-httpstat
 
 jobs:
@@ -20,18 +29,14 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
-        cd $IMAGE_BUILD_OS_PATH && docker build . --file Dockerfile --tag $IMAGE_NAME
+        docker build . --file Dockerfile --tag $IMAGE_NAME
     - name: Log into registry
       run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login -u $DOCKER_HUB_USER --password-stdin
     - name: Push image
       run: |
-        # now pwd
-        echo $PWD
-        cd $IMAGE_BUILD_OS_PATH
-
         # parse docker image id
         IMAGE_ID=$DOCKER_HUB_USER/$IMAGE_NAME
-        # lower case allgit
+        # lower case all
         IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
         # ref get version
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
@@ -39,13 +44,19 @@ jobs:
         [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
         # Use Docker `latest` tag convention when get main
         [ "$VERSION" == "main" ] && VERSION=latest
-        # add docker build os
-        VERSION=$VERSION-${IMAGE_BUILD_OS_PATH}
 
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
-        # seting tag
+        # setting tag
         docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
 
         # docker push
         docker push $IMAGE_ID:$VERSION
+
+```
+
+## buildx template
+
+```yml
+
+```
