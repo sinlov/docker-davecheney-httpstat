@@ -4,7 +4,7 @@
 [![docker image size](https://img.shields.io/docker/image-size/sinlov/docker-davecheney-httpstat)](https://hub.docker.com/r/sinlov/docker-davecheney-httpstat)
 [![docker pulls](https://img.shields.io/docker/pulls/sinlov/docker-davecheney-httpstat)](https://hub.docker.com/r/sinlov/docker-davecheney-httpstat/tags?page=1&ordering=last_updated)
 
-- docker hub see https://hub.docker.com/r/sinlov/docker-davecheney-httpstat
+- docker hub see [https://hub.docker.com/r/sinlov/docker-davecheney-httpstat](https://hub.docker.com/r/sinlov/docker-davecheney-httpstat)
 
 ## source repo
 
@@ -17,6 +17,8 @@ $ sudo curl -L --fail https://raw.githubusercontent.com/sinlov/docker-davecheney
 $ sudo chmod +x /usr/local/bin/httpstat
 # then check
 $ httpstat --help
+# then check url like
+$ httpstat https://www.google.com
 ```
 
 ## todo-list

@@ -25,8 +25,7 @@ RUN --mount=type=cache,id=gomod,target=/go/pkg/mod \
 RUN --mount=type=cache,id=gomod,target=/go/pkg/mod \
   cd ${GO_PATH_SOURCE_DIR}/github.com/davecheney/httpstat && \
   CGO_ENABLED=0 \
-  go build -v \
-  -a \
+  go build \
   -installsuffix cgo \
   -ldflags '-w -s --extldflags "-static -fpic"' \
   -tags netgo \
