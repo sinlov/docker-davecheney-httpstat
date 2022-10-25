@@ -33,12 +33,10 @@ $ httpstat https://www.google.com
 ## fast dev
 
 ```bash
-$ make runContainerParentBuild
-
 # then test build as test/Dockerfile
-$ make testRestartLatest
+$ make dockerTestRestartLatest
 # clean test build
-$ make testPruneLatest
+$ make dockerTestPruneLatest
 ```
 
 - just online use Dockerfile

@@ -1,9 +1,9 @@
 # This dockerfile
 # VERSION 1
-# Author: bridgewwater
+# Author: sinlov
 # dockerfile offical document https://docs.docker.com/engine/reference/builder/
 
-# maintainer="https://github.com/bridgewwater/template-docker-golang-exec-build"
+# maintainer="https://github.com/sinlov/docker-davecheney-httpstat"
 
 # https://hub.docker.com/_/golang/tags
 FROM golang:1.19.2-buster as builder
