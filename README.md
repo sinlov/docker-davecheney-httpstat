@@ -12,6 +12,14 @@
 
 ## useage
 
+- use in docker
+
+```bash
+$ docker run --rm sinlov/docker-davecheney-httpstat:latest --help
+```
+
+- use as docker-exec
+
 ```bash
 $ sudo curl -L --fail https://raw.githubusercontent.com/sinlov/docker-davecheney-httpstat/main/run.sh -o /usr/local/bin/httpstat
 $ sudo chmod +x /usr/local/bin/httpstat
